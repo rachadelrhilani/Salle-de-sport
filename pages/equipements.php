@@ -44,7 +44,6 @@ $result_equipements = mysqli_query($connect, $query_equipements);
   <title>Dashboard</title>
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
   <style>
     body {
@@ -63,7 +62,7 @@ $result_equipements = mysqli_query($connect, $query_equipements);
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
-    <img src="../image/logo.jpg" class="w-25" alt="logo">
+    <a href="dashboard.php"><img src="../image/logo.jpg" class="w-25" alt="logo"></a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-collapse-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -82,15 +81,14 @@ $result_equipements = mysqli_query($connect, $query_equipements);
 <div class="container mt-4">
     <h1>Gestion des Équipements</h1>
 
-    <!-- Affichage des messages de succès/erreur PHP -->
     <?php echo $message; ?>
 
-    <!-- Bouton pour ouvrir le formulaire d'ajout (utilise Bootstrap Modal) -->
+
     <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#addEquipmentModal">
       Ajouter un nouvel équipement
     </button>
 
-    <!-- TABLEAU DE LA LISTE DES ÉQUIPEMENTS -->
+   
     <div class="card shadow p-3">
         <h3>Liste des Équipements</h3>
         <div class="table-responsive">
@@ -112,7 +110,6 @@ $result_equipements = mysqli_query($connect, $query_equipements);
                                 <td><?php echo htmlspecialchars($row['type']); ?></td>
                                 <td><?php echo htmlspecialchars($row['quantite_disponible']); ?></td>
                                 <td>
-                                    <!-- Simple badge de couleur selon l'état -->
                                     <span class="badge bg-<?php 
                                         if ($row['etat'] == 'bon') echo 'success';
                                         elseif ($row['etat'] == 'moyen') echo 'warning';
@@ -122,9 +119,9 @@ $result_equipements = mysqli_query($connect, $query_equipements);
                                     </span>
                                 </td>
                                 <td>
-                                    <!-- Lien Modifier (vers le fichier modifier_equipement.php) -->
+                                    
                                     <a href="modifier_equipement.php?id=<?php echo $row['id_equipement']; ?>" class="btn btn-warning btn-sm">Modifier</a>
-                                    <!-- Lien Supprimer (utilise JS pour confirmation) -->
+                                    
                                     <a href="?delete_id=<?php echo $row['id_equipement']; ?>" 
                                        class="btn btn-danger btn-sm" 
                                        onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet équipement ?');">Supprimer</a>
@@ -141,7 +138,7 @@ $result_equipements = mysqli_query($connect, $query_equipements);
         </div>
     </div>
 </div>
-<!-- Modal Ajouter Equipement -->
+
 <div class="modal fade" id="addEquipmentModal" tabindex="-1" aria-labelledby="addEquipmentModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">

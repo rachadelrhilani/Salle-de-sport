@@ -64,7 +64,7 @@ if (!$result_repartition_cours) {
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
-    <img src="../image/logo.jpg" class="w-25" alt="logo">
+    <a href="dashboard.php"><img src="../image/logo.jpg" class="w-25" alt="logo"></a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-collapse-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
