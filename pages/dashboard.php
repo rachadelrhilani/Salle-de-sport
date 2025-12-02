@@ -11,7 +11,7 @@ if ($totalequipement_result && $totalcours_result) {
   $total_equipements = $row_equipement['total_equipements'];
   $total_cours = $row_cours['total_cours'];
 }
-//Afficher 
+//la répartition des equipements par type 
 $query_repartition_equipement = "
     SELECT type As type_equipement, COUNT(*) AS count_equipement
     FROM equipements
@@ -23,7 +23,7 @@ $result_repartition_equipement = mysqli_query($connect, $query_repartition_equip
 if (!$result_repartition_equipement) {
   echo "Erreur lors de la récupération de la répartition des équipements : " . mysqli_error($connect);
 }
-//Récupération de la répartition des cours par type
+//la répartition des cours par type
 $query_repartition_cours = "
     SELECT nom AS type_cours, COUNT(*) AS count_cours
     FROM cours
