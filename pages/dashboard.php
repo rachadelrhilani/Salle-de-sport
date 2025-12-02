@@ -1,4 +1,18 @@
-
+<?php
+include("../connection/connect.php");
+//Afficher le nombre total des equipements et cours
+$countequipement = "SELECT COUNT(*) AS total_equipements FROM equipements";
+$countcours = "SELECT COUNT(*) AS total_cours FROM cours";
+$totalequipement_result = mysqli_query($connect,$countequipement);
+$totalcours_result = mysqli_query($connect,$countcours);
+if ($totalequipement_result && $totalcours_result) {
+    $row_equipement = mysqli_fetch_assoc($totalequipement_result);
+    $row_cours = mysqli_fetch_assoc($totalcours_result);
+    $total_equipements = $row_equipement['total_equipements'];
+    $total_cours = $row_cours['total_cours'];
+} 
+//Afficher 
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -25,19 +39,18 @@
     <div class="col-md-6">
       <div class="card shadow p-4">
         <h6>Total des Cours</h6>
-        <h2 class="text-primary fw-bold"><?= $totalCours ?></h2>
+        <h2 class="text-primary fw-bold"><?php echo $total_cours ?></h2>
       </div>
     </div>
 
     <div class="col-md-6">
       <div class="card shadow p-4">
         <h6>Total des Équipements</h6>
-        <h2 class="text-success fw-bold"><?= $totalEquipements ?></h2>
+        <h2 class="text-success fw-bold"><?php echo $total_equipements ?></h2>
       </div>
     </div>
   </div>
 
-  <!-- GRAPHS -->
   <div class="row mt-4 g-4">
 
     <div class="col-md-6">
@@ -58,32 +71,7 @@
 
 </div>
 
-<script>
-  // 📌 Récupération des données PHP → JS
-  const coursLabels = <?= json_encode(array_column($coursTypes, "type")) ?>;
-  const coursData = <?= json_encode(array_column($coursTypes, "total")) ?>;
 
-  const equipLabels = <?= json_encode(array_column($equipementsTypes, "type")) ?>;
-  const equipData = <?= json_encode(array_column($equipementsTypes, "total")) ?>;
-
-  // 📊 Graphique cours
-  new Chart(document.getElementById("coursesChart"), {
-    type: "pie",
-    data: {
-      labels: coursLabels,
-      datasets: [{ data: coursData }]
-    }
-  });
-
-  // 📊 Graphique équipements
-  new Chart(document.getElementById("equipmentsChart"), {
-    type: "doughnut",
-    data: {
-      labels: equipLabels,
-      datasets: [{ data: equipData }]
-    }
-  });
-</script>
 
 </body>
 </html>
