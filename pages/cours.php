@@ -1,3 +1,43 @@
+<?php
+include("../connection/connect.php");
+
+$message = ''; 
+
+// supprimer un cours
+if (isset($_GET['delete_id'])) {
+    $id = mysqli_real_escape_string($connect, $_GET['delete_id']);
+    $sql_delete = "DELETE FROM cours WHERE id_cours = '$id'";
+    if (mysqli_query($connect, $sql_delete)) {
+        $message = '<div class="alert alert-success">Le cours a été supprimé avec succès.</div>';
+    } else {
+        $message = '<div class="alert alert-danger">Erreur lors de la suppression : ' . mysqli_error($connect) . '</div>';
+    }
+}
+
+// ajouter un cours
+if (isset($_POST['ajouter_cours'])) {
+    $nom = mysqli_real_escape_string($connect, $_POST['nom']);
+    $categorie = mysqli_real_escape_string($connect, $_POST['categorie']);
+    $date_cours = mysqli_real_escape_string($connect, $_POST['date_cours']);
+    $heure = mysqli_real_escape_string($connect, $_POST['heure']);
+    $duree = mysqli_real_escape_string($connect, $_POST['duree']);
+    $max_participants = mysqli_real_escape_string($connect, $_POST['max_participants']);
+
+    $sql_insert = "INSERT INTO cours (nom, categorie, date_cours, heure, duree, nb_max_participants) 
+                   VALUES ('$nom', '$categorie', '$date_cours', '$heure', '$duree', '$max_participants')";
+    
+    if (mysqli_query($connect, $sql_insert)) {
+        $message = '<div class="alert alert-success">Le nouveau cours a été ajouté avec succès.</div>';
+    } else {
+        $message = '<div class="alert alert-danger">Erreur lors de l\'ajout : ' . mysqli_error($connect) . '</div>';
+    }
+}
+
+
+$query_cours = "SELECT * FROM cours ORDER BY date_cours DESC";
+$result_cours = mysqli_query($connect, $query_cours);
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -7,7 +47,6 @@
   <title>Dashboard</title>
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
   <style>
     body {
@@ -77,11 +116,11 @@
                                 <td><?php echo htmlspecialchars($row['date_cours']); ?></td>
                                 <td><?php echo htmlspecialchars($row['heure']); ?></td>
                                 <td><?php echo htmlspecialchars($row['duree']); ?></td>
-                                <td><?php echo htmlspecialchars($row['max_participants']); ?></td>
+                                <td><?php echo htmlspecialchars($row['nb_max_participants']); ?></td>
                                 <td>
-                                    <!-- Lien Modifier (utilisera un autre fichier pour le formulaire de modif) -->
+                                    
                                     <a href="modifier_cours.php?id=<?php echo $row['id_cours']; ?>" class="btn btn-warning btn-sm">Modifier</a>
-                                    <!-- Lien Supprimer (utilise JS pour confirmation) -->
+                                    
                                     <a href="?delete_id=<?php echo $row['id_cours']; ?>" 
                                        class="btn btn-danger btn-sm" 
                                        onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce cours ?');">Supprimer</a>
@@ -98,3 +137,47 @@
         </div>
     </div>
 </div>
+<div class="modal fade" id="addCourseModal" tabindex="-1" aria-labelledby="addCourseModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addCourseModalLabel">Ajouter un nouveau cours</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form method="POST" action="">
+          <div class="mb-3">
+            <label for="nom" class="form-label">Nom du cours</label>
+            <input type="text" class="form-control" id="nom" name="nom" required>
+          </div>
+          <div class="mb-3">
+            <label for="categorie" class="form-label">Catégorie</label>
+            <input type="text" class="form-control" id="categorie" name="categorie" required>
+          </div>
+          <div class="mb-3">
+            <label for="date_cours" class="form-label">Date</label>
+            <input type="date" class="form-control" id="date_cours" name="date_cours" required>
+          </div>
+          <div class="mb-3">
+            <label for="heure" class="form-label">Heure</label>
+            <input type="time" class="form-control" id="heure" name="heure" required>
+          </div>
+           <div class="mb-3">
+            <label for="duree" class="form-label">Durée (minutes)</label>
+            <input type="number" class="form-control" id="duree" name="duree" required>
+          </div>
+           <div class="mb-3">
+            <label for="max_participants" class="form-label">Max Participants</label>
+            <input type="number" class="form-control" id="max_participants" name="max_participants" required>
+          </div>
+          <button type="submit" name="ajouter_cours" class="btn btn-primary">Enregistrer le cours</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
+</body>
+</html>
