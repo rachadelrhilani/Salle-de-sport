@@ -85,11 +85,11 @@ if (isset($_POST['modifier_cours']) && $course_data) {
         </div>
          <div class="mb-3">
             <label for="max_participants" class="form-label">Max Participants</label>
-            <input type="number" class="form-control" id="max_participants" name="max_participants" value="<?php echo htmlspecialchars($course_data['max_participants']); ?>" required>
+            <input type="number" class="form-control" id="max_participants" name="max_participants" value="<?php echo htmlspecialchars($course_data['nb_max_participants']); ?>" required>
         </div>
 
         <button type="submit" name="modifier_cours" class="btn btn-primary">Sauvegarder les modifications</button>
-        <a href="page_cours.php" class="btn btn-secondary">Annuler</a>
+        <a href="cours.php" class="btn btn-secondary">Annuler</a>
     </form>
     <?php endif; ?>
 </div>
