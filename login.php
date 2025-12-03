@@ -1,5 +1,18 @@
 <?php
-
+include("./connection/connect.php");
+$message = '';
+if (isset($_POST['seconnecter'])) {
+    $email = mysqli_real_escape_string($connect, $_POST['email']);
+    $password = mysqli_real_escape_string($connect, $_POST['password']);
+    $Auth = "SELECT * FROM user WHERE email = '$email' AND password = '$password'";
+    if(mysqli_query($connect,$Auth)){
+       header("Location: ./pages/dashboard.php");
+       exit();
+    }
+    else{
+      $message = '<div class="alert alert-success">ce email ou password n existe pas</div>';
+    }
+}
 ?>
 <!DOCTYPE html>
 <html lang="fr">
