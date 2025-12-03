@@ -1,3 +1,6 @@
+<?php
+
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -11,19 +14,19 @@
 <div class="container d-flex justify-content-center align-items-center vh-100">
   <div class="card shadow p-4" style="width: 380px;">
     <h3 class="text-center mb-3">Connexion</h3>
-
-    <form>
+    <?php echo $message; ?>
+    <form action="" method="POST">
       <div class="mb-3">
         <label class="form-label">Email</label>
-        <input type="email" class="form-control" placeholder="Entrez votre email">
+        <input type="email" name="email" class="form-control" placeholder="Entrez votre email">
       </div>
 
       <div class="mb-3">
         <label class="form-label">Mot de passe</label>
-        <input type="password" class="form-control" placeholder="Entrez votre mot de passe">
+        <input type="password" name="password" class="form-control" placeholder="Entrez votre mot de passe">
       </div>
 
-      <button type="submit" class="btn btn-primary w-100">Se connecter</button>
+      <button type="submit" name="seconnecter" class="btn btn-primary w-100">Se connecter</button>
 
       <p class="text-center mt-3">
         Pas de compte ?
