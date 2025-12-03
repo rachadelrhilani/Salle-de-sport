@@ -1,5 +1,6 @@
 <?php
 include("../connection/connect.php");
+session_start();
 //Afficher le nombre total des equipements et cours
 $countequipement = "SELECT COUNT(*) AS total_equipements FROM equipements";
 $countcours = "SELECT COUNT(*) AS total_cours FROM cours";
@@ -62,6 +63,7 @@ if (!$result_repartition_cours) {
 </head>
 
 <body>
+ 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
     <a href="dashboard.php"><img src="../image/logo.jpg" class="w-25" alt="logo"></a>
@@ -76,13 +78,14 @@ if (!$result_repartition_cours) {
         <li class="nav-item">
           <a class="nav-link" href="equipements.php">Les Équipements</a>
         </li>
+        <a href="../login.php" class="btn btn-primary">Se Deconnecter</a>
       </ul>
     </div>
   </div>
 </nav>
   <div class="container py-4">
 
-    <h1 class="fw-bold mb-4">Bienvenue sur le Dashboard</h1>
+    <h1 class="fw-bold mb-4">Bienvenue <?php echo $_SESSION['user_con'];?></h1>
 
     <div class="row g-4">
       <div class="col-md-6">

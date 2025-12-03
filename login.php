@@ -1,12 +1,17 @@
 <?php
 include("./connection/connect.php");
+session_start();
 $message = '';
 if (isset($_POST['seconnecter'])) {
     $email = mysqli_real_escape_string($connect, $_POST['email']);
     $password = mysqli_real_escape_string($connect, $_POST['password']);
     $Auth = "SELECT * FROM user WHERE email = '$email' AND password = '$password'";
-    if(mysqli_query($connect,$Auth)){
+    $query_login = mysqli_query($connect,$Auth);
+    $row_login = mysqli_fetch_array($query_login);
+    if(mysqli_num_rows($query_login) > 0){
        header("Location: ./pages/dashboard.php");
+       $_SESSION['user_con'] = $row_login["nomcomplet"];
+       $_SESSION['status'] = "you are connected";
        exit();
     }
     else{
