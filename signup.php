@@ -1,3 +1,11 @@
+<?php
+include("./connection/connect.php");
+$nomcomplet = mysqli_real_escape_string($connect, $_POST['nomcomplet']);
+$email = mysqli_real_escape_string($connect, $_POST['email']);
+$password = mysqli_real_escape_string($connect, $_POST['password']);
+$query_insert = "INSERT INTO equipements (nom, type, quantite_disponible, etat) 
+                   VALUES ('$nom', '$type', '$quantite_disponible', '$etat')"
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -15,17 +23,17 @@
     <form>
       <div class="mb-3">
         <label class="form-label">Nom complet</label>
-        <input type="text" class="form-control" placeholder="Entrez votre nom">
+        <input type="text" name="nomcomplet" class="form-control" placeholder="Entrez votre nom">
       </div>
 
       <div class="mb-3">
         <label class="form-label">Email</label>
-        <input type="email" class="form-control" placeholder="Entrez votre email">
+        <input type="email" name="email" class="form-control" placeholder="Entrez votre email">
       </div>
 
       <div class="mb-3">
         <label class="form-label">Mot de passe</label>
-        <input type="password" class="form-control" placeholder="Créer un mot de passe">
+        <input type="password" name="password" class="form-control" placeholder="Créer un mot de passe">
       </div>
 
       <div class="mb-3">

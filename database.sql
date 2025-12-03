@@ -43,3 +43,9 @@ USE sport;
     quantite_disponible INT NOT NULL,
     etat ENUM('bon', 'moyen', 'à remplacer') NOT NULL
 ); */
+/* CREATE TABLE user (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nomcomplet VARCHAR(100) NOT NULL,
+    email VARCHAR(255) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL
+); */
