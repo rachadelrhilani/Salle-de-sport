@@ -18,7 +18,7 @@ if (isset($_GET['unlink_cours']) && isset($_GET['unlink_equip'])) {
     }
 }
 
-/*AJOUT / LIER (cours + équipement)*/
+/*lier cours et équipement*/
 if (isset($_POST['lier'])) {
     $cours = mysqli_real_escape_string($connect, $_POST['cours']);
     $equip = mysqli_real_escape_string($connect, $_POST['equip']);
@@ -35,7 +35,7 @@ if (isset($_POST['lier'])) {
     }
 }
 
-/*filtres */
+/*filtres*/
 $filtre_cours = $_GET['cours'] ?? "";
 $filtre_equip = $_GET['equip'] ?? "";
 

@@ -95,7 +95,8 @@ $result_cours = mysqli_query($connect, $query_cours);
       Ajouter un nouveau cours
     </button>
 
-    <!-- TABLEAU DE LA LISTE DES COURS -->
+    <a href="export_pdf.php" class="btn btn-secondary mb-3">Exporter en PDF</a>
+
     <div class="card shadow p-3">
         <h3>Liste des Cours</h3>
         <div class="table-responsive">

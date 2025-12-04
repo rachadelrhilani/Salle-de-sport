@@ -3,7 +3,7 @@ include("../connection/connect.php");
 $message = '';
 $equipment_data = null;
 
-// Récupérer l'ID de l'équipement à modifier
+// recuperer id de l'équipement à modifier
 if (isset($_GET['id'])) {
     $id = mysqli_real_escape_string($connect, $_GET['id']);
     $query = "SELECT * FROM equipements WHERE id_equipement = '$id'";
@@ -15,7 +15,7 @@ if (isset($_GET['id'])) {
     }
 }
 
-// Gérer la soumission du formulaire de modification
+// modifie equipement
 if (isset($_POST['modifier_equipement']) && $equipment_data) {
     $id = mysqli_real_escape_string($connect, $_POST['id_equipement']);
     $nom = mysqli_real_escape_string($connect, $_POST['nom']);
