@@ -74,6 +74,10 @@ $result_equipements = mysqli_query($connect, $query_equipements);
         <li class="nav-item">
           <a class="nav-link" href="equipements.php">Les Équipements</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" href="equipement_cours.php">Equipement&cours</a>
+        </li>
+        <a href="../login.php" class="btn btn-primary">Se Deconnecter</a>
       </ul>
     </div>
   </div>

@@ -3,9 +3,7 @@ include("../connection/connect.php");
 
 $message = ''; 
 
-/* -----------------------------------------
-   SUPPRESSION (délier un équipement d’un cours)
------------------------------------------ */
+/* suppression(délier un équipement d’un cours) */
 if (isset($_GET['unlink_cours']) && isset($_GET['unlink_equip'])) {
     $id_cours = mysqli_real_escape_string($connect, $_GET['unlink_cours']);
     $id_equipement = mysqli_real_escape_string($connect, $_GET['unlink_equip']);
@@ -20,9 +18,7 @@ if (isset($_GET['unlink_cours']) && isset($_GET['unlink_equip'])) {
     }
 }
 
-/* -----------------------------------------
-   AJOUT / LIER (cours + équipement)
------------------------------------------ */
+/*AJOUT / LIER (cours + équipement)*/
 if (isset($_POST['lier'])) {
     $cours = mysqli_real_escape_string($connect, $_POST['cours']);
     $equip = mysqli_real_escape_string($connect, $_POST['equip']);
@@ -39,21 +35,15 @@ if (isset($_POST['lier'])) {
     }
 }
 
-/* -----------------------------------------
-   FILTRES
------------------------------------------ */
+/*filtres */
 $filtre_cours = $_GET['cours'] ?? "";
 $filtre_equip = $_GET['equip'] ?? "";
 
-/* -----------------------------------------
-   LISTES DÉROULANTES
------------------------------------------ */
+/*LISTES DÉROULANTES*/
 $cours_res = mysqli_query($connect, "SELECT * FROM cours ORDER BY nom ASC");
 $equip_res = mysqli_query($connect, "SELECT * FROM equipements ORDER BY nom ASC");
 
-/* -----------------------------------------
-   REQUÊTES LISTE ASSOCIATIONS
------------------------------------------ */
+/*REQUÊTES LISTE ASSOCIATIONS*/
 if ($filtre_cours != "") {
     $query = "
         SELECT c.nom AS cours, e.nom AS equipement, ce.quantite_necessaire, ce.id_cours, ce.id_equipement
@@ -94,18 +84,38 @@ $result_assoc = mysqli_query($connect, $query);
 </head>
 
 <body class="bg-light">
-
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a href="dashboard.php"><img src="../image/logo.jpg" class="w-25" alt="logo"></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-collapse-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-end" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="cours.php">Les Cours</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="equipements.php">Les Équipements</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="equipement_cours.php">Equipement&cours</a>
+        </li>
+        <a href="../login.php" class="btn btn-primary">Se Deconnecter</a>
+      </ul>
+    </div>
+  </div>
+</nav>
 <div class="container mt-4">
     <h2>Gestion Cours & Équipements</h2>
 
     <?= $message ?>
 
-    <!-- BUTTON AJOUT -->
+    
     <button class="btn btn-primary my-3" data-bs-toggle="modal" data-bs-target="#lierModal">
         Lier un équipement à un cours
     </button>
 
-    <!-- MODAL LIER -->
     <div class="modal fade" id="lierModal">
       <div class="modal-dialog">
         <div class="modal-content">
@@ -144,7 +154,7 @@ $result_assoc = mysqli_query($connect, $query);
       </div>
     </div>
 
-    <!-- FILTRES -->
+    
     <div class="card p-3 mb-4">
         <form method="GET" class="row g-3">
 
@@ -183,7 +193,7 @@ $result_assoc = mysqli_query($connect, $query);
         </form>
     </div>
 
-    <!-- TABLEAU DES ASSOCIATIONS -->
+    
     <div class="card p-3">
         <h4>Associations</h4>
 
