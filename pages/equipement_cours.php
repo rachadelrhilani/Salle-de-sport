@@ -39,11 +39,11 @@ if (isset($_POST['lier'])) {
 $filtre_cours = $_GET['cours'] ?? "";
 $filtre_equip = $_GET['equip'] ?? "";
 
-/*LISTES DÉROULANTES*/
+/*listes de selection*/
 $cours_res = mysqli_query($connect, "SELECT * FROM cours ORDER BY nom ASC");
 $equip_res = mysqli_query($connect, "SELECT * FROM equipements ORDER BY nom ASC");
 
-/*REQUÊTES LISTE ASSOCIATIONS*/
+/*requette d'association*/
 if ($filtre_cours != "") {
     $query = "
         SELECT c.nom AS cours, e.nom AS equipement, ce.quantite_necessaire, ce.id_cours, ce.id_equipement
@@ -82,7 +82,11 @@ $result_assoc = mysqli_query($connect, $query);
   <title>Cours & Équipements</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
 </head>
-
+<style>
+    .w-25{
+      width:70px !important;
+    }
+</style>
 <body class="bg-light">
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">

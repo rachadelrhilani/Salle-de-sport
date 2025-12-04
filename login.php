@@ -11,11 +11,13 @@ if (isset($_POST['seconnecter'])) {
     if(mysqli_num_rows($query_login) > 0){
        header("Location: ./pages/dashboard.php");
        $_SESSION['user_con'] = $row_login["nomcomplet"];
+       $_SESSION['auth'] = "you are connected";
        $_SESSION['status'] = "you are connected";
        exit();
     }
     else{
       $message = '<div class="alert alert-success">ce email ou password n existe pas</div>';
+      $_SESSION['auth'] = "";
     }
 }
 ?>
