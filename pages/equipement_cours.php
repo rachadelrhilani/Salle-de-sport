@@ -1,6 +1,11 @@
 <?php
 include("../connection/connect.php");
+session_start();
 
+if (!isset($_SESSION['user_con'])) {
+    header("Location: ../login.php");
+    exit();
+}
 $message = ''; 
 
 /* suppression(délier un équipement d’un cours) */

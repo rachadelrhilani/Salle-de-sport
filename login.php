@@ -9,10 +9,10 @@ if (isset($_POST['seconnecter'])) {
     $query_login = mysqli_query($connect,$Auth);
     $row_login = mysqli_fetch_array($query_login);
     if(mysqli_num_rows($query_login) > 0){
-       header("Location: ./pages/dashboard.php");
        $_SESSION['user_con'] = $row_login["nomcomplet"];
        $_SESSION['auth'] = "you are connected";
        $_SESSION['status'] = "you are connected";
+       header("Location: ./pages/dashboard.php");
        exit();
     }
     else{

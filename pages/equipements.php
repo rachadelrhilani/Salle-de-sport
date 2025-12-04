@@ -1,6 +1,11 @@
 <?php
 include("../connection/connect.php");
+session_start();
 
+if (!isset($_SESSION['user_con'])) {
+    header("Location: ../login.php");
+    exit();
+}
 $message = ''; 
 
 if (isset($_GET['delete_id'])) {

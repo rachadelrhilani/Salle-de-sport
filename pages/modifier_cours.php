@@ -3,7 +3,14 @@ include("../connection/connect.php");
 $message = '';
 $course_data = null;
 
-// Récupérer l'ID du cours à modifier depuis l'URL
+session_start();
+
+if (!isset($_SESSION['user_con'])) {
+    header("Location: ../login.php");
+    exit();
+}
+
+// recuperer id du cours à modifier depuis l'URL
 if (isset($_GET['id'])) {
     $id = mysqli_real_escape_string($connect, $_GET['id']);
     $query = "SELECT * FROM cours WHERE id_cours = '$id'";

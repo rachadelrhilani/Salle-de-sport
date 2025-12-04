@@ -1,7 +1,10 @@
 <?php
 include("../connection/connect.php");
 session_start();
-include("logout.php");
+if (!isset($_SESSION['user_con'])) {
+    header("Location: ../login.php");
+    exit();
+}
 //Afficher le nombre total des equipements et cours
 $countequipement = "SELECT COUNT(*) AS total_equipements FROM equipements";
 $countcours = "SELECT COUNT(*) AS total_cours FROM cours";
@@ -83,7 +86,7 @@ if (!$result_repartition_cours) {
           <a class="nav-link" href="equipement_cours.php">Equipement&cours</a>
         </li>
         <li>
-          <button name="logout" class="btn btn-primary"><a href="../login.php" class="nav-link">Se Deconnecter</a></button>
+          <button name="logout" class="btn btn-primary"><a href="logout.php" class="nav-link">Se Deconnecter</a></button>
         </li>
         
       </ul>
