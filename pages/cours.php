@@ -181,8 +181,41 @@ $result_cours = mysqli_query($connect, $query_cours);
     </div>
   </div>
 </div>
+<div class="card p-3 mt-4">
+    <h3>Statistiques</h3>
+    <canvas id="chartCategorie"></canvas>
+</div>
+<?php
+$query_chart = "SELECT categorie, COUNT(*) AS total FROM cours GROUP BY categorie";
+$result_chart = mysqli_query($connect, $query_chart);
+
+$categories = [];
+$totaux = [];
+
+while ($row = mysqli_fetch_assoc($result_chart)) {
+    $categories[] = $row['categorie'];
+    $totaux[] = $row['total'];
+}
+?>
+
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+const ctx = document.getElementById('chartCategorie').getContext('2d');
+new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: <?php echo json_encode($categories); ?>,
+        datasets: [{
+            label: 'Nombre de cours par categorie',
+            data: <?php echo json_encode($totaux); ?>,
+            backgroundColor: 'rgba(54, 162, 235, 0.6)',
+            borderColor: 'rgba(54, 162, 235, 1)',
+            borderWidth: 1
+        }]
+    }
+});
+</script>
 </body>
 </html>
