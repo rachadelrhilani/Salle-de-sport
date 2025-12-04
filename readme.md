@@ -1,9 +1,9 @@
-# 🏋️‍♂️ Gestion des Cours & Équipements — Salle de Sport  
+# Gestion des Cours & Équipements — Salle de Sport  
 Application PHP/MySQL avec Dashboard, CRUD, Graphiques et Export PDF/CSV
 
 ---
 
-## 📌 Contexte du Projet
+## Contexte du Projet
 Ce projet a été développé pour une société souhaitant gérer les **cours** et **équipements** d’une salle de sport.
 
 L'application permet :
@@ -17,9 +17,9 @@ L'application permet :
 
 ---
 
-# 📁 Fonctionnalités
+# Fonctionnalités
 
-## 🎯 1. Modélisation (ERD)
+##  1. Modélisation (ERD)
 La base de données comprend 3 tables principales :
 - `cours`
 - `equipements`
@@ -32,17 +32,17 @@ Le fichier **database.sql** contient :
 
 ---
 
-## 📊 2. Dashboard
+## 2. Dashboard
 Le tableau de bord affiche :
-- 🔢 Nombre total de cours  
-- 🔢 Nombre total d’équipements  
-- 📈 Répartition des cours par catégorie  
-- 📊 Répartition des équipements par type  
+-  Nombre total de cours  
+-  Nombre total d’équipements  
+-  Répartition des cours par catégorie  
+-  Répartition des équipements par type  
 - Graphiques réalisés avec **Chart.js**
 
 ---
 
-## 📝 3. Gestion des Cours (CRUD)
+## 3. Gestion des Cours (CRUD)
 Fonctionnalités :
 - Affichage des cours dans un tableau  
 - Ajout d’un nouveau cours  
@@ -60,7 +60,7 @@ Champs présents :
 
 ---
 
-## 🧰 4. Gestion des Équipements (CRUD)
+##  4. Gestion des Équipements (CRUD)
 Champs :
 - nom  
 - type  
@@ -76,7 +76,7 @@ Fonctionnalités :
 
 ---
 
-## 🔗 5. Table Associative (Bonus) — `cours_equipements`
+##  5. Table Associative (Bonus) — `cours_equipements`
 Permet :
 - Associer plusieurs équipements à un cours  
 - Supprimer une association  
@@ -85,7 +85,7 @@ Permet :
 
 ---
 
-## 📤 6. Export PDF / CSV
+##  6. Export PDF / CSV
 L'application permet :
 - Export des cours  
 - Export des équipements  
@@ -95,7 +95,7 @@ L'application permet :
 
 ---
 
-## 🔐 7. Authentification
+##  7. Authentification
 Sécurisation de l’application avec :
 - Login  
 - Register  
@@ -103,7 +103,7 @@ Sécurisation de l’application avec :
 
 ---
 
-# 🧱 Technologies utilisées
+# Technologies utilisées
 
 ### Backend
 - PHP 8.3+
@@ -124,7 +124,7 @@ Sécurisation de l’application avec :
 
 ---
 
-# 🐳 Dockerisation (incluse)
+#  Dockerisation (incluse)
 
 Le projet inclut :
 - `docker-compose.yml`
