@@ -82,21 +82,22 @@ $result_equipements = mysqli_query($connect, $query_equipements);
         <li class="nav-item">
           <a class="nav-link" href="equipement_cours.php">Equipement&cours</a>
         </li>
-        <a href="../login.php" class="btn btn-primary">Se Deconnecter</a>
+        <a href="logout.php" class="btn btn-primary">Se Deconnecter</a>
       </ul>
     </div>
   </div>
 </nav>
 <div class="container mt-4">
     <h1>Gestion des Équipements</h1>
-
+     
     <?php echo $message; ?>
 
 
     <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#addEquipmentModal">
       Ajouter un nouvel équipement
     </button>
-
+    
+    <a href="export_equipement.php" class="btn btn-secondary mb-3">Exporter en PDF</a>
    
     <div class="card shadow p-3">
         <h3>Liste des Équipements</h3>
