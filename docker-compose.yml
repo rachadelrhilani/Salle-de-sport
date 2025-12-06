@@ -1,4 +1,4 @@
-version: "3.9"
+
 
 services:
   apache:
@@ -7,7 +7,7 @@ services:
     ports:
       - "8000:80"
     volumes:
-      - .:/var/www/html
+      - .:/var/www/html:cached   # <-- important pour Windows
     depends_on:
       - db
     networks:
@@ -19,7 +19,7 @@ services:
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: projet_db
+      MYSQL_DATABASE: sport
     volumes:
       - db_data:/var/lib/mysql
       - ./database.sql:/docker-entrypoint-initdb.d/database.sql
@@ -35,7 +35,7 @@ services:
       PMA_USER: root
       PMA_PASSWORD: root
     ports:
-      - "8080:80"
+      - "8081:80"
     networks:
       - mynet
 
