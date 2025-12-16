@@ -7,7 +7,7 @@ services:
     ports:
       - "8000:80"
     volumes:
-      - .:/var/www/html:cached   # <-- important pour Windows
+      - .:/var/www/html:cached  
     depends_on:
       - db
     networks:

@@ -38,7 +38,7 @@ if (isset($_POST['modifier_cours']) && $course_data) {
                     date_cours='$date_cours', 
                     heure='$heure', 
                     duree='$duree', 
-                    max_participants='$max_participants' 
+                    nb_max_participants='$max_participants' 
                    WHERE id_cours='$id'";
 
     if (mysqli_query($connect, $sql_update)) {
